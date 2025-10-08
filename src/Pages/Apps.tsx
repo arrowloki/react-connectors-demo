@@ -5,7 +5,6 @@ const Apps = () => {
     const [data, setData] = useState([]);
     const getAppsData = async () => {
        const response=  await axios.get('https://68e66b1f21dd31f22cc58fcc.mockapi.io/connectors/app');
-       console.log(response.data);
        setData(response.data);
     }
     useEffect(() => {
@@ -19,7 +18,7 @@ const Apps = () => {
             </h1>
             <div className="grid sm:grid-cols-5 sm:gap-4 grid-cols-2 gap-6">
                 {data.map((item) => (
-                    <div key={item.id}>
+                    <div key={item?.id}>
                         <AppTile  item = {item} />
                     </div>
                 ))}
