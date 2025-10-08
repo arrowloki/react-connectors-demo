@@ -3,9 +3,17 @@ import {useEffect, useState} from "react";
 import AppTile from "../components/AppTile.tsx";
 const Apps = () => {
     const [data, setData] = useState([]);
+    const [error, setError] = useState<string | null>('');
     const getAppsData = async () => {
-       const response=  await axios.get('https://68e66b1f21dd31f22cc58fcc.mockapi.io/connectors/app');
-       setData(response.data);
+       try {
+           const response=  await axios.get('https://68e66b1f21dd31f22cc58fcc.mockapi.io/connectors/app');
+           setData(response.data);
+           setError(null);
+       }
+       catch (e) {
+           setError('Failed to retrive data');
+           console.log(error, e);
+       }
     }
     useEffect(() => {
         getAppsData().catch(console.error);
@@ -17,8 +25,8 @@ const Apps = () => {
                 Your Apps
             </h1>
             <div className="grid sm:grid-cols-5 sm:gap-4 grid-cols-2 gap-6">
-                {data.map((item) => (
-                    <div key={item?.id}>
+                {data.map((item,index) => (
+                    <div key={item?.id ?? `item-${index}`}>
                         <AppTile  item = {item} />
                     </div>
                 ))}
