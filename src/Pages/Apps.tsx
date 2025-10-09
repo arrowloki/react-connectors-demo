@@ -26,7 +26,7 @@ const Apps = () => {
             <h1 className="font-bold text-3xl mb-5 display-flex flex-1 items-center justify-center text-center">
                 Your Apps
             </h1>
-            {error && (<div className="display-flex items-center text-red-500 justify-center text-center bg-black p-0">
+            {error && (<div className="flex items-center text-red-500 justify-center text-center bg-black p-4">
                 <span>{error}</span>
             </div>)}
             <div className="grid sm:grid-cols-5 sm:gap-4 grid-cols-2 gap-6">
